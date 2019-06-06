@@ -1120,6 +1120,13 @@ public extension NSAttributedString.Key {
         return link(at: characterIndex(at: point))
     }
 
+	/// Checks if specified point contains a link
+	///
+	/// returns false if there's no link at specified point
+	public func containsLink(at point: CGPoint) -> Bool {
+		return link(at: point) != nil
+	}
+
     private func setNeedsFramesetter() {
         _renderedAttributedText = nil
         needsFramesetter = true
