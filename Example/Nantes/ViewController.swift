@@ -26,7 +26,7 @@ final class ViewController: UIViewController {
         case shadow = "Shadowed Text"
         case stroked = "Stroked text"
         case struckOut = "this is struck out text"
-        case title = "Title text: Long title that will wrap so we can see some truncated text and expand it on taps on this label.\nWith some new lines."
+        case title = "Title text: Long title that will wrap so we can see some truncated text and expand it on taps on this label. Other text that's long and interesting as well.\nWith some new lines."
         case topAlignment = "Top Alignment"
         case truncatedLink = "http://www.more.com"
         case truncatedLinkText = "Truncated link text with a longer body so we'll truncate it\nMaybe a newline for good measure"
@@ -64,11 +64,10 @@ final class ViewController: UIViewController {
         setupTruncatedAttributedToken()
         setupPrivacyPolicyLabel()
         setupLineSpace()
-        setupUILabelLineSpace()
     }
 
     private func setupTitleLabel() {
-        titleLabel.attributedTruncationToken = NSAttributedString(string: "... more")
+        titleLabel.attributedTruncationToken = NSAttributedString(string: "...\ntap for more")
         titleLabel.numberOfLines = 3
         titleLabel.labelTappedBlock = { [weak self] in
             guard let self = self else { return }
@@ -255,17 +254,6 @@ final class ViewController: UIViewController {
         label.lineSpacing = 40
         label.font = .systemFont(ofSize: 14.0)
         label.text = ExampleString.linespace.rawValue
-
-        labelStackView.addArrangedSubview(label)
-    }
-
-    private func setupUILabelLineSpace() {
-        let label: UILabel = .init(frame: .zero)
-        label.numberOfLines = 0
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 40
-        let attributedText = NSAttributedString(string: ExampleString.linespace.rawValue, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0)])
-        label.attributedText = attributedText
 
         labelStackView.addArrangedSubview(label)
     }
