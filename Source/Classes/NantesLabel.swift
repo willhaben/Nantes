@@ -363,6 +363,12 @@ public extension NSAttributedString.Key {
         }
     }
 
+	// MARK: - UIResponderStandardEditActions
+
+	override open func copy(_ sender: Any?) {
+		UIPasteboard.general.string = text
+	}
+
     // MARK: - UILabel functions
 
     override public init(frame: CGRect) {
